@@ -20,7 +20,7 @@ export default function IndexScreen() {
 
       {applications.slice(0, 5).map((app) => (
        <Text key={app.id} style={{ marginTop: 8 }}>
-          {app.companyName} - {app.position} - {app.appliedAt}
+          {app.companyName} - {app.position} - {new Date(app.appliedAt * 1000).toLocaleDateString()}
         </Text>
       ))}
     </ScrollView>

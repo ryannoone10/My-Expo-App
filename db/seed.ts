@@ -42,7 +42,7 @@ const statuses = ["applied", "interviewing", "offer", "rejected"];
 
 const appValues = [];
 const now = Math.floor(Date.now() / 1000);
-for (let i = 0; i < 30; i++) {
+for (let i = 0; i < companies.length; i++) {
     const daysAgo = Math.floor(Math.random() * 60);
     const timestamp = now - (daysAgo * 86400);
     
