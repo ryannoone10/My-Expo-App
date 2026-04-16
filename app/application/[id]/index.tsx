@@ -1,6 +1,5 @@
 // Detail screen adapted from student/[id].tsx tutorial pattern
 // https://github.com/rorypierce111/react-native-lab/blob/main/app/student/%5Bid%5D/edit.tsx
-// https://github.com/rorypierce111/react-native-lab/blob/main/app/student/%5Bid%5D.tsx 
 import InfoTag from '@/components/ui/info-tag';
 import PrimaryButton from '@/components/ui/primary-button';
 import ScreenHeader from '@/components/ui/screen-header';
@@ -12,7 +11,7 @@ import { useLocalSearchParams, useRouter } from 'expo-router';
 import { useContext, useEffect, useState } from 'react';
 import { Alert, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { AppContext } from '../_layout';
+import { AppContext } from '../../_layout';
 
 
 type StatusLog = {
@@ -134,7 +133,10 @@ export default function ApplicationDetail() {
           <PrimaryButton
             label="Edit"
             onPress={() => {
-              // TODO: navigate to edit screen
+              router.push({
+                pathname: '/application/[id]/edit',
+                params: { id: application.id.toString() },
+              });
             }}
           />
           <View style={styles.buttonSpacing}>
