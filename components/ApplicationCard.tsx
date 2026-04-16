@@ -1,7 +1,9 @@
 // Pattern adapted from StudentCard component
 // https://github.com/rorypierce111/react-native-lab
-import { Application, Category } from '@/app/_layout';
+import { AppContext, Application, Category } from '@/app/_layout';
+import { STATUS_MAP } from '@/lib/constants';
 import { useRouter } from 'expo-router';
+import { useContext } from 'react';
 import { Pressable, StyleSheet, Text, View } from 'react-native';
 
 type Props = {
@@ -9,18 +11,16 @@ type Props = {
   category: Category | undefined;
 };
 
-const STATUS_STYLES: Record<string, { bg: string; text: string; label: string }> = {
-  '0': { bg: '#FBEAF0', text: '#993556', label: 'Applied' },
-  '1': { bg: '#E6F1FB', text: '#185FA5', label: 'Interviewing' },
-  '2': { bg: '#EAF3DE', text: '#3B6D11', label: 'Offer' },
-  '3': { bg: '#FCEBEB', text: '#A32D2D', label: 'Rejected' },
-};
-
 export default function ApplicationCard({ application, category }: Props) {
   const router = useRouter();
+  const context = useContext(AppContext);
 
-  const status = STATUS_STYLES[String(application.metric)] || STATUS_STYLES['0'];
-
+  const appLogs = context?.statusLogs.filter((log) => log.applicationID === application.id) || [];
+  const currentStatus = appLogs.length > 0
+    ? appLogs[appLogs.length - 1].newStatus
+    : 0;
+  const status = STATUS_MAP[currentStatus] || STATUS_MAP[0];
+  
   const dateString = new Date(application.appliedAt * 1000).toLocaleDateString('en-IE', {
     day: 'numeric',
     month: 'short',
@@ -30,9 +30,12 @@ export default function ApplicationCard({ application, category }: Props) {
     <Pressable
       accessibilityLabel={`${application.companyName}, ${application.position}, ${status.label}`}
       accessibilityRole="button"
-      onPress={() =>{
-        // add navigate to detail screen
-      }}
+      onPress={() =>
+        router.push({
+            pathname: '/application/[id]',
+            params: { id: application.id.toString() },
+        })
+    }
       style={({ pressed }) => [styles.card, pressed ? styles.cardPressed : null]}
     >
       <View style={styles.topRow}>
