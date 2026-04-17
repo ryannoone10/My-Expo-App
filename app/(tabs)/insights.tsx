@@ -8,7 +8,7 @@ import ScreenHeader from '@/components/ui/screen-header';
 import { STATUS_MAP } from '@/lib/constants';
 import { useContext } from 'react';
 import { Dimensions, ScrollView, StyleSheet, Text, View } from 'react-native';
-import { BarChart, PieChart } from 'react-native-chart-kit';
+import { LineChart, PieChart } from 'react-native-chart-kit';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { AppContext } from '../_layout';
 
@@ -46,7 +46,7 @@ export default function InsightsScreen() {
     return appDate >= getMonthStart();
   }).length;
 
-  // Weekly counts for bar chart (last 4 weeks)
+  // Weekly counts for line chart (last 4 weeks)
   const weeklyData: number[] = [];
   const weekLabels: string[] = [];
 
@@ -123,10 +123,10 @@ export default function InsightsScreen() {
           <Text style={styles.emptyText}>No data yet</Text>
         ) : (
           <View style={styles.chartCard}>
-            <BarChart
+            <LineChart
               data={{
                 labels: weekLabels,
-                datasets: [{ data: weeklyData }],
+                datasets: [{ data: weeklyData.some((d) => d > 0) ? weeklyData : [0] }],
               }}
               width={screenWidth - 32}
               height={200}
@@ -140,12 +140,17 @@ export default function InsightsScreen() {
                 decimalPlaces: 0,
                 color: (opacity = 1) => `rgba(24, 95, 165, ${opacity})`,
                 labelColor: () => '#6B7280',
-                barPercentage: 0.6,
                 propsForBackgroundLines: {
                   strokeDasharray: '',
                   stroke: '#F3F4F6',
                 },
+                propsForDots: {
+                  r: '5',
+                  strokeWidth: '2',
+                  stroke: '#185FA5',
+                },
               }}
+              bezier
               style={styles.chart}
             />
           </View>
