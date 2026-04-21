@@ -72,8 +72,13 @@ export default function RootLayout() {
   }
 
   return (
-    <AppContext.Provider value={{ applications, setApplications, categories, setCategories, statusLogs, setStatusLogs, currentUser, setCurrentUser }}>
-      <Stack />
-    </AppContext.Provider>
-  );
+  <AppContext.Provider value={{
+    applications, setApplications,
+    categories, setCategories,
+    statusLogs, setStatusLogs,
+    currentUser, setCurrentUser,
+  }}>
+      <Stack screenOptions={{ headerShown: false }} />
+  </AppContext.Provider>
+);
 }
