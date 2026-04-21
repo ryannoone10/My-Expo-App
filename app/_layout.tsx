@@ -36,7 +36,7 @@ export default function RootLayout() {
   const [statusLogs, setStatusLogs] = useState<StatusLog[]>([]);
   const [currentUser, setCurrentUser] = useState<User | null>(null);
   const [isReady, setIsReady] = useState(false);
-
+  
   useEffect(() => {
     const loadData = async () => {
       await migrate();

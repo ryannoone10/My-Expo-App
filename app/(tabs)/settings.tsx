@@ -6,6 +6,7 @@ import PrimaryButton from '@/components/ui/primary-button';
 import ScreenHeader from '@/components/ui/screen-header';
 import { db } from '@/db/index';
 import { categories as categoriesTable } from '@/db/schema';
+import { exportToCSV } from '@/lib/export';
 import { eq } from 'drizzle-orm';
 import { useContext, useState } from 'react';
 import { Alert, Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
@@ -199,6 +200,7 @@ export default function SettingsScreen() {
           </View>
         )}
 
+        <View style={styles.divider} />
         <PrimaryButton
           label="Log out"
           onPress={async () => {
@@ -232,6 +234,24 @@ export default function SettingsScreen() {
           }}
           variant="danger"
         />
+
+    <Text style={styles.sectionTitle}>Data</Text>
+    <PrimaryButton
+      label="Export applications as CSV"
+      onPress={async () => {
+        try {
+          await exportToCSV(
+            context.applications,
+            context.categories,
+            context.statusLogs
+          );
+        } catch (e: any) {
+          Alert.alert('Error', 'Failed to export data: ' + e.message);
+        }
+      }}
+      variant="secondary"
+    />
+        
       </ScrollView>
     </SafeAreaView>
   );
