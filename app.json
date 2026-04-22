@@ -4,10 +4,12 @@
     "slug": "job-tracker-assign",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/images/icon.png",
+    "icon": "./assets/images/Logo.png",
     "scheme": "jobtracker",
     "userInterfaceStyle": "automatic",
     "splash": {
+      "image": "./assets/images/Logo.png",
+      "resizeMode": "contain",
       "backgroundColor": "#185FA5"
     },
     "ios": {
@@ -16,6 +18,7 @@
     },
     "android": {
       "adaptiveIcon": {
+        "foregroundImage": "./assets/images/Logo.png",
         "backgroundColor": "#185FA5"
       },
       "package": "com.rnoone.jobtracker"
