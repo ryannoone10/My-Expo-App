@@ -12,7 +12,7 @@ type Props = {
   secureTextEntry?: boolean;
 };
 
-export default function FormField({ label, value, onChangeText, placeholder, multiline = false, numberOfLines = 1, secureTextEntry = true }: Props) {
+export default function FormField({ label, value, onChangeText, placeholder, multiline = false, numberOfLines = 1, secureTextEntry = false }: Props) {
     return (
         <View style={styles.container}>
             <Text style={styles.label}>{label}</Text>
