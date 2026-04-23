@@ -9,9 +9,10 @@ type Props = {
   placeholder?: string;
   multiline?: boolean;
   numberOfLines?: number;
+  secureTextEntry?: boolean;
 };
 
-export default function FormField({ label, value, onChangeText, placeholder, multiline = false, numberOfLines = 1 }: Props) {
+export default function FormField({ label, value, onChangeText, placeholder, multiline = false, numberOfLines = 1, secureTextEntry = true }: Props) {
     return (
         <View style={styles.container}>
             <Text style={styles.label}>{label}</Text>
@@ -24,6 +25,7 @@ export default function FormField({ label, value, onChangeText, placeholder, mul
                 multiline={multiline}
                 numberOfLines={numberOfLines}
                 accessibilityLabel={label}
+                secureTextEntry={secureTextEntry}
             />
         </View>
     );

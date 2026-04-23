@@ -99,6 +99,7 @@ export default function LoginScreen() {
           value={password}
           onChangeText={setPassword}
           placeholder="Enter your password"
+          secureTextEntry
         />
 
         {isRegistering && (
@@ -107,6 +108,7 @@ export default function LoginScreen() {
             value={confirmPassword}
             onChangeText={setConfirmPassword}
             placeholder="Re-enter your password"
+            secureTextEntry
           />
         )}
 
