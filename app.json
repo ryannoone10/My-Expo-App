@@ -22,6 +22,17 @@
         "backgroundColor": "#185FA5"
       },
       "package": "com.rnoone.jobtracker"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "2278e6df-2288-4e79-b47f-9b8a638300e9"
+      }
+    },
+    "runtimeVersion": {
+      "policy": "appVersion"
+    },
+    "updates": {
+      "url": "https://u.expo.dev/2278e6df-2288-4e79-b47f-9b8a638300e9"
     }
   }
 }
