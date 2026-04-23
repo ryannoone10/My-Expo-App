@@ -183,8 +183,8 @@ export default function IndexScreen() {
           <View style={styles.emptyState}>
             <Text style={styles.emptyText}>
               {hasFilters
-                ? 'No applications match your filters'
-                : 'No applications yet — tap + to add one'}
+                ? 'No applications match your filters, add applications or clear filters to see results'
+                : 'No applications yet, tap + to add one'}
             </Text>
           </View>
         ) : (
@@ -275,7 +275,7 @@ const styles = StyleSheet.create({
   },
   filterToggleText: {
     fontSize: 13,
-    color: '#374151',
+    color: '#202327',
     fontWeight: '500',
   },
   filterToggleTextActive: {
@@ -290,7 +290,7 @@ const styles = StyleSheet.create({
   filterLabel: {
     fontSize: 12,
     fontWeight: '500',
-    color: '#6B7280',
+    color: '#171717',
     marginTop: 8,
     marginBottom: 4,
   },
@@ -334,7 +334,7 @@ const styles = StyleSheet.create({
   },
   resultCount: {
     fontSize: 12,
-    color: '#9CA3AF',
+    color: '#202122',
     marginBottom: 8,
   },
   emptyState: {
@@ -343,7 +343,7 @@ const styles = StyleSheet.create({
   },
   emptyText: {
     fontSize: 14,
-    color: '#9CA3AF',
+    color: '#141415',
     textAlign: 'center',
   },
 });
